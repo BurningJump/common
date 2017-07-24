@@ -1,0 +1,23 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+canvas {
+    border: 1px solid orange;
+    margin: 0 auto;
+    display: block;
+}
+
+body {
+  text-align: center;
+}
+
+#offscreenCanvasWrap {
+  text-align: center;
+}
+#offscreenCanvasWrap > div {
+  display: inline-block;
+  width: 202px;
+  text-align: left;;
+}
