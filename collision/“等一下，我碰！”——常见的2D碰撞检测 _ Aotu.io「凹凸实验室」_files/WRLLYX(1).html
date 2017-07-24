@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<!-- saved from url=(0074)https://s.codepen.io/JChehe/fullembedgrid/WRLLYX?type=embed&animations=run -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  
+  <link rel="shortcut icon" type="image/x-icon" href="https://production-assets.codepen.io/assets/favicon/favicon-8ea04875e70c4b0bb41da869e81236e54394d63638a1ef12fa558a4a835f1164.ico">
+  <link rel="mask-icon" type="" href="https://production-assets.codepen.io/assets/favicon/logo-pin-f2d2b6d2c61838f7e76325261b7195c27224080bc099486ddd6dccb469b8e8e6.svg" color="#111">
+  <title>CodePen - Boundary collision detection</title>
+  
+  
+  
+  
+      <style>
+      * {
+	margin: 0;
+	padding: 0;
+}
+
+canvas {
+	border: 1px solid orange;
+	margin: 10px auto 0;
+	display: block;
+}
+    </style>
+
+  <script>
+  window.console = window.console || function(t) {};
+</script>
+
+  
+  
+  <script>
+  if (document.location.search.match(/type=embed/gi)) {
+    window.parent.postMessage("resize", "*");
+  }
+</script>
+
+</head>
+
+<body translate="no">
+
+  <canvas id="canvas" width="300" height="200"></canvas>
+    <script src="./stopExecutionOnTimeout-b2a7b3fe212eaa732349046d8416e00a9dec26eb7fd347590fbced3ab38af52e.js.下载"></script>
+
+  
+    <script>
+    var Ball = function(context) {
+    this.left = 0
+    this.top = 0
+    this.radius = 16
+    this.velocityX = 3
+    this.velocityY = 2
+    this.context = context
+  }
+
+  Ball.prototype = {
+    paint: function() {
+      this.context.beginPath()
+      this.context.arc(this.left + this.radius, this.top + this.radius, 
+                       this.radius, 0, Math.PI * 2, false)
+      this.context.fill()
+    },
+
+    move: function() {
+      this.left += this.velocityX
+      this.top  += this.velocityY
+    }
+  }
+
+  function handleEdgeCollisions(ball) {
+    var ballRight = ball.left + ball.radius * 2,
+      ballBottom = ball.top + ball.radius * 2
+
+    if(ball.left < 0) {
+      ball.left = 0
+      ball.velocityX = -ball.velocityX
+    } else if(ballRight > canvas.width) {
+      ball.left = canvas.width - ball.radius * 2
+      ball.velocityX = -ball.velocityX
+    }
+
+    if(ball.top < 0) {
+      ball.top = 0
+      ball.velocityY = -ball.velocityY
+    } else if(ballBottom > canvas.height) {
+      ball.top = canvas.height - ball.radius * 2
+      ball.velocityY = -ball.velocityY
+    }
+  }
+
+  function animate(time) {
+    context.clearRect(0, 0, canvas.width, canvas.height)
+
+    ball.move()
+    handleEdgeCollisions(ball)
+    ball.paint()
+
+    requestAnimationFrame(animate)
+  }
+
+  var canvas = document.getElementById('canvas'),
+    context = canvas.getContext('2d'),
+    ball = new Ball(context)
+
+  ball.paint()
+  requestAnimationFrame(animate)
+  //# sourceURL=pen.js
+  </script>
+
+  
+  
+
+
+
+ </body></html>
