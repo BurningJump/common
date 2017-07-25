@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Fixed Diameter Circles</title>
+	<link rel="stylesheet" href="style.css">
+</head>
+<body>
+	<!-- 随机位置，固定半径，不重叠，静止 -->
+	<canvas id="circles" width="800" height="800"></canvas>
+	<a href="javascript:void(0);" id="begin">点击重绘</a>
+	<div>
+	  	<p>运算时间：<span id="countTime"></span>（平均：<span id="countTimeAverage"></span>）</p>
+	  	<p>平铺比例：<span id="tiledRatio"></span>（平均：<span id="tiledRatioAverage"></span>）</p>
+	  	<p>绘制次数：<span id="drawCounter"></span></p>
+	</div>
+	<script type="text/javascript" src="script.js"></script>
+</body>
+</html>
