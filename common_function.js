@@ -23,3 +23,14 @@ function mouseMoveVelocity(){
         previousT = event.timeStamp;
     });
 }
+
+
+//弹出虚拟键盘时input自动上移
+function focus(){
+    let _this = this;
+    setTimeout(function(){
+        let pannel = document.getElementById('chatpannel');//输入框所在块
+        //let pannel = _this.$refs.chatpannel;//vue.js中
+        pannel.scrollIntoView(true);
+    },200);//键盘弹起需要时间
+}
