@@ -102,3 +102,5 @@ console.log(cPattern.test("粤B39006"));
 var cnPattern = /[\u4E00-\u9FA5]/;
 //输出 true
 console.log(cnPattern.test("蔡宝坚"));
+
+//16 
