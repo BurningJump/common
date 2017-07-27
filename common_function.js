@@ -34,3 +34,32 @@ function focus(){
         pannel.scrollIntoView(true);
     },200);//键盘弹起需要时间
 }
+
+
+
+//移动设备摇一摇事件
+//y轴和x轴的变化范围从-45°到+45°，即这个区间是：
+//delta = 9.8 * sin(45°) * 2 = 13.8
+//即只要x轴和y轴的g值变化超过13.8，我们就认为发生了摇一摇事件。
+const EMPTY_VALUE = 100;
+const THREAD_HOLD = 13.8;
+var minX = EMPTY_VALUE,
+    minY = EMPTY_VALUE;
+window.ondevicemotion = function(event){
+    var gravity = event.accelerationIncludingGravity,
+        x = gravity.x,
+        y = gravity.y;
+    if(x < minX) minX = x;
+    if(y < minY) minY = y;
+    if(Math.abs(x - minX) > THREAD_HOLD &&  
+            Math.abs(y - minY) > THREAD_HOLD){
+        console.log("shake");
+        var event = new CustomEvent("shake");
+        window.dispatchEvent(event);
+        minX = minY = EMPTY_VALUE;
+    }   
+}   
+    
+window.addEventListener("shake", function(){
+    console.log("window shake callback was called");
+});
