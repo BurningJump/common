@@ -1,0 +1,22 @@
+{
+    "manifest_version": 2,
+
+    "name": "屏蔽百度广告",
+    "description": "屏蔽百度搜索结果的广告",
+    "version": "1.0",
+
+    "icons": {
+        "16": "icon/icon16.png",
+        "19": "icon/icon19.png",
+        "38": "icon/icon38.png",
+        "48": "icon/icon48.png",
+        "128": "icon/icon128.png"
+    },
+    "content_scripts": [{
+        "matches": ["*://*.baidu.com/*", "*://*.sogou.com/*"],
+        "js": ["js/jquery-1.12.3.min.js", "js/no_ads.js"],
+        "run_at": "document_end",
+        "all_frames": true
+    }]
+
+}
